@@ -30,7 +30,7 @@ Measures the value of a video recommender using a randomised experiment on 1.36 
 
 `Python` `pandas` `NumPy` `Plotly` `Streamlit` · [Live app](https://personalisation-lift-dkvysrjbxfpijjzcnot9ju.streamlit.app/)
 
-### [Ask The Olist Data](https://github.com/ask-the-olist-data)
+### [Ask The Olist Data](https://github.com/iyerbrah/ask-the-olist-data) 
 
 A natural-language interface to a retail database, paired with a 60-question benchmark that measures how often its answers are correct.
 

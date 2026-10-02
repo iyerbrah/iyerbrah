@@ -10,7 +10,7 @@ I work on data problems that begin with a business question and end with a numbe
 
 ## Featured projects
 
-### [IPL Chase Win Probability](https://github.com/iyerbrah/ipl-win-probability)
+### [IPL Chase Win Probability](https://github.com/iyerbrah/ipl-chae-win-probability)
 
 Ball-by-ball win probability for every IPL run chase from 2008 to 2026, with a leverage score that identifies the moments of a match that carry the most tension.
 
@@ -30,7 +30,7 @@ Measures the value of a video recommender using a randomised experiment on 1.36 
 
 `Python` `pandas` `NumPy` `Plotly` `Streamlit` · [Live app](https://personalisation-lift-dkvysrjbxfpijjzcnot9ju.streamlit.app/)
 
-### [Text-to-SQL Scorecard](https://github.com/iyerbrah/text-to-sql-scorecard)
+### [Ask The Olist Data](https://github.com/ask-the-olist-data)
 
 A natural-language interface to a retail database, paired with a 60-question benchmark that measures how often its answers are correct.
 

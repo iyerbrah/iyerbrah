@@ -38,7 +38,7 @@ A natural-language interface to a retail database, paired with a 60-question ben
 - No other change that was tested made a measurable difference.
 - Every generated query is checked to be read-only before it runs.
 
-`Python` `SQL` `DuckDB` `sqlglot` `Altair` `Streamlit` · [Live app](https://text-to-sql-scorecard-xgu4cnfjvj5qghjrasbdkh.streamlit.app/)
+`Python` `SQL` `DuckDB` `sqlglot` `Altair` `Streamlit` · [Live app](https://ask-the-olist-data-5bcmydxcckwd6pjb5cybm7.streamlit.app/)
 
 ---
 

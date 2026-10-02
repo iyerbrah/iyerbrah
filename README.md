@@ -1,6 +1,6 @@
 # Ram Iyer
 
-**Data science and AI** · BITS Pilani (M.Sc. Physics, B.E. Mechanical, Minor in Finance) · Pune, India
+**Data Science and AI** · BITS Pilani (M.Sc. Physics, B.E. Mechanical, Minor in Finance) · Pune, India
 
 I work on data problems that begin with a business question and end with a number someone can act on. Each project below is tested on data it has not seen, deployed as a live app, and documented with its limitations as well as its results.
 
@@ -30,7 +30,7 @@ Measures the value of a video recommender using a randomised experiment on 1.36 
 
 `Python` `pandas` `NumPy` `Plotly` `Streamlit` · [Live app](https://personalisation-lift-dkvysrjbxfpijjzcnot9ju.streamlit.app/)
 
-### [Ask The Olist Data](https://github.com/iyerbrah/ask-the-olist-data) 
+### [Ask the OList Data](https://github.com/iyerbrah/ask-the-olist-data) 
 
 A natural-language interface to a retail database, paired with a 60-question benchmark that measures how often its answers are correct.
 

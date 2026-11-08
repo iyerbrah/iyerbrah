@@ -2,13 +2,23 @@
 
 **Data Science and AI** · BITS Pilani (M.Sc. Physics, B.E. Mechanical, Minor in Finance) · Pune, India
 
-I work on data problems that begin with a business question and end with a number someone can act on. Each project below is tested on data it has not seen, deployed as a live app, and documented with its limitations as well as its results.
+I work on problems that begin with a business question and end with a number someone can act on. Each project below is measured on data or queries it was not built on, deployed as a live app, and documented with its limitations as well as its results.
 
 [LinkedIn](https://www.linkedin.com/in/iyer-ram/)
 
 ---
 
 ## Featured projects
+
+### [Jhola: AI Grocery Cart Builder](https://github.com/iyerbrah/Jhola)
+
+Type a grocery request in plain language, like "chicken biryani for 4", and get three ready-to-order carts from 1,006 real Indian grocery products, with quantities and totals worked out.
+
+- The LLM picks products; code checks every choice and does all the maths, so an invented product or price can't reach the screen.
+- **100% of answers pass every rule** on a 30-query eval, including budget and item-count limits and a prompt-injection attempt; 93% pass without a repair call.
+- About **5 s and ₹1.5 per answer**, from one planning call, three parallel cart calls and prompt caching.
+
+`TypeScript` `Next.js` `OpenAI` `Zod` `Redis` `nginx` · [Live app](https://jhola.ramiyer.tech)
 
 ### [IPL Win Probability Model](https://github.com/iyerbrah/ipl-chase-win-probability)
 
@@ -30,7 +40,7 @@ Measures the value of a video recommender using a randomised experiment on 1.36 
 
 `Python` `pandas` `NumPy` `Plotly` `Streamlit` · [Live app](https://personalisation-lift-dkvysrjbxfpijjzcnot9ju.streamlit.app/)
 
-### [Text-to-SQL Analytics Assistant](https://github.com/iyerbrah/ask-the-olist-data) 
+### [Text-to-SQL Analytics Assistant](https://github.com/iyerbrah/ask-the-olist-data)
 
 A natural-language interface to a retail database, paired with a 60-question benchmark that measures how often its answers are correct.
 
@@ -46,8 +56,11 @@ A natural-language interface to a retail database, paired with a 60-question ben
 
 | Area | Tools and methods |
 |---|---|
-| Languages | Python, SQL |
+| Languages | Python, SQL, TypeScript |
 | Data analysis | pandas, NumPy, DuckDB |
 | Machine learning | scikit-learn, LightGBM, model evaluation and calibration |
+| LLM applications | OpenAI API, structured outputs, prompt caching, text-to-SQL, evaluation benchmarks |
 | Experimentation | Randomised experiment analysis, segment analysis, benchmarking |
-| Visualisation and apps | Plotly, Altair, Streamlit |
+| Web apps | Next.js, React, Tailwind CSS, Streamlit |
+| Deployment | Linux (Ubuntu), nginx, systemd, Redis (Upstash), Let's Encrypt |
+| Visualisation | Plotly, Altair |

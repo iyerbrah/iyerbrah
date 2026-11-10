@@ -14,7 +14,7 @@ The rule that runs through all of it: **the model reads and chooses; code decide
 <table>
   <tr>
     <td align="center" valign="top" width="25%"><h3>3</h3>AI products live on my own Linux server</td>
-    <td align="center" valign="top" width="25%"><h3>588</h3>automated tests across them, run in CI on every PR</td>
+    <td align="center" valign="top" width="25%"><h3>590</h3>automated tests across them, run in CI on every PR</td>
     <td align="center" valign="top" width="25%"><h3>5</h3>eval suites that score the real model; two projects gate PRs on them</td>
     <td align="center" valign="top" width="25%"><h3>0</h3>values invented in 1,285 sent to carrier portals</td>
   </tr>
@@ -31,7 +31,7 @@ A small business describes itself in one chat message; QuoteRunner asks only for
 - **Carrier-portal integration:** reads each portal's HTML form, maps fields by 2-of-3 LLM consensus (names only, never values) and caches the mapping by form hash. **1,285 of 1,285 values correct across 252 submissions, 0 invented.**
 - **The model reads, code decides:** forced tool-call extraction, Pydantic validation and no-guess rules in code decide every value a carrier receives.
 - **Measured with 50 simulated customers** in 7 speaking styles: **99.3–99.8% field accuracy**; transcript-driven fixes took completion from 78% to 90–98%.
-- About **$0.003 a conversation**, with per-call tracing and spend caps; 192 tests and an eval gate on every PR.
+- About **$0.003 a conversation**, with per-call tracing and spend caps; 193 tests and an eval gate on every PR.
 
 `Python` `FastAPI` `OpenAI` `Pydantic` `SQLite` · [Live](https://quoterunner.ramiyer.tech) · [Eval results](https://quoterunner.ramiyer.tech/evals) · [Code](https://github.com/iyerbrah/QuoteRunner)
 
@@ -60,7 +60,7 @@ Plain-English business questions become one read-only SQL query over 100,000 rea
 
 - **What makes it right, measured:** on 60 hand-checked questions scored on results (not SQL text), a one-page semantic layer took accuracy from **85% to 100%** (hard questions 7/15 → 15/15). It held on DeepSeek (83% → 98%); few-shot examples added nothing and caused a new error.
 - **Model output treated as untrusted input:** a sqlglot single-SELECT allow-list, a read-only database, 15 s and 1,000-row caps, and **17 attack tests**. It refused all 10 questions the data can't answer.
-- 103 tests in CI; every merge to `main` deploys itself in about 14 s.
+- 104 tests in CI; every merge to `main` deploys itself in about 14 s.
 
 `Python` `FastAPI` `DuckDB` `sqlglot` `OpenAI` · [Live](https://plainsight.ramiyer.tech) · [Scorecard](https://plainsight.ramiyer.tech/scorecard) · [Code](https://github.com/iyerbrah/Plainsight)
 

@@ -1,66 +1,107 @@
-# Ram Iyer
+<img src="assets/banner.png" alt="Ram Iyer: I build AI agents that ship to production. The model reads and chooses; code decides what's true, checks every value and measures the result. QuoteRunner: 0 of 1,285 values invented at carrier portals. Jhola: agent task success 63% to 90% with 0 rule breaks. Plainsight: text-to-SQL accuracy 85% to 100% with a one-page semantic layer." width="100%">
 
-**Data Science and AI** · BITS Pilani (M.Sc. Physics, B.E. Mechanical, Minor in Finance) · Pune, India
+<p align="center">
+  <a href="https://quoterunner.ramiyer.tech"><b>QuoteRunner</b></a> ·
+  <a href="https://jhola.ramiyer.tech"><b>Jhola</b></a> ·
+  <a href="https://plainsight.ramiyer.tech"><b>Plainsight</b></a> ·
+  <a href="https://www.linkedin.com/in/iyer-ram/">LinkedIn</a>
+</p>
 
-I work on problems that begin with a business question and end with a number someone can act on. Each project below is measured on data or queries it was not built on, deployed as a live app, and documented with its limitations as well as its results.
+I build AI agents and the systems around them: the evals that measure them, the guardrails that keep them honest, and the data pipelines, integrations and servers they run on. Three of them are live on my own server, each with its evaluation in public.
 
-[LinkedIn](https://www.linkedin.com/in/iyer-ram/)
+The rule that runs through all of it: **the model reads and chooses; code decides what's true.** Prices, totals, every value sent to an insurance carrier, and whether a query may run at all are computed and checked in tested code, never taken on the model's word.
 
----
+<table>
+  <tr>
+    <td align="center" valign="top" width="25%"><h3>3</h3>AI products live on my own Linux server</td>
+    <td align="center" valign="top" width="25%"><h3>588</h3>automated tests across them, run in CI on every PR</td>
+    <td align="center" valign="top" width="25%"><h3>5</h3>eval suites that score the real model; two projects gate PRs on them</td>
+    <td align="center" valign="top" width="25%"><h3>0</h3>values invented in 1,285 sent to carrier portals</td>
+  </tr>
+</table>
 
-## Featured projects
+## Shipped
 
-### [Jhola: AI Grocery Cart Builder](https://github.com/iyerbrah/Jhola)
+<a href="https://quoterunner.ramiyer.tech"><img align="right" width="380" src="assets/quoterunner.jpg" alt="QuoteRunner: one sentence in, three carrier quotes out"></a>
 
-Type a grocery request in plain language, like "chicken biryani for 4", and get three ready-to-order carts from 1,006 real Indian grocery products, with quantities and totals worked out.
+### [QuoteRunner](https://github.com/iyerbrah/QuoteRunner) · AI insurance-broker agent
 
-- The LLM picks products; code checks every choice and does all the maths, so an invented product or price can't reach the screen.
-- **100% of answers pass every rule** on a 30-query eval, including budget and item-count limits and a prompt-injection attempt; 93% pass without a repair call.
-- About **5 s and ₹1.5 per answer**, from one planning call, three parallel cart calls and prompt caching.
+A small business describes itself in one chat message; QuoteRunner asks only for what's missing, fills a verified ACORD 125-style commercial insurance application, submits it to three simulated carrier portals in parallel and brings back the quotes, cheapest first.
 
-`TypeScript` `Next.js` `OpenAI` `Zod` `Redis` `nginx` · [Live app](https://jhola.ramiyer.tech)
+- **Carrier-portal integration:** reads each portal's HTML form, maps fields by 2-of-3 LLM consensus (names only, never values) and caches the mapping by form hash. **1,285 of 1,285 values correct across 252 submissions, 0 invented.**
+- **The model reads, code decides:** forced tool-call extraction, Pydantic validation and no-guess rules in code decide every value a carrier receives.
+- **Measured with 50 simulated customers** in 7 speaking styles: **99.3–99.8% field accuracy**; transcript-driven fixes took completion from 78% to 90–98%.
+- About **$0.003 a conversation**, with per-call tracing and spend caps; 192 tests and an eval gate on every PR.
 
-### [IPL Win Probability Model](https://github.com/iyerbrah/ipl-chase-win-probability)
+`Python` `FastAPI` `OpenAI` `Pydantic` `SQLite` · [Live](https://quoterunner.ramiyer.tech) · [Eval results](https://quoterunner.ramiyer.tech/evals) · [Code](https://github.com/iyerbrah/QuoteRunner)
 
-Ball-by-ball win probability for every IPL run chase from 2008 to 2026, with a leverage score that identifies the moments of a match that carry the most tension.
+<br clear="right">
 
-- **82% accuracy** on two held-out seasons, against a 56% baseline.
-- Logistic regression matched a neural network and outperformed LightGBM.
-- The top 10% of over-breaks hold 29% of all leverage, which is where ad inventory is most valuable.
+<a href="https://jhola.ramiyer.tech"><img align="right" width="380" src="assets/jhola.jpg" alt="Jhola: one line in, three ready carts out"></a>
 
-`Python` `scikit-learn` `LightGBM` `Plotly` `Streamlit` · [Live app](https://ipl-win-probability-rxgwz3kbdl6nwuk3rmyjwe.streamlit.app/)
+### [Jhola](https://github.com/iyerbrah/Jhola) · AI shopping agent for quick commerce
 
-### [Recommender Engagement Experiment](https://github.com/iyerbrah/personalisation-lift)
+One sentence, like "chicken biryani for 4", becomes three priced, in-stock carts from 2,743 real products; then a tool-using agent edits them by chat ("make it vegetarian", "keep it under ₹450").
 
-Measures the value of a video recommender using a randomised experiment on 1.36 million video impressions across 27,024 users (KuaiRand).
+- **The model picks, code counts:** every price, pack size, stock level and budget is computed and checked in code against strict Zod schemas. **97–100% of 35 eval requests pass every rule**, and prompt injections are refused.
+- **An agent built from scratch** (11 validated tools, streamed steps, Undo): moving scope, budget and diet edits into deterministic code took **task success from 63% to 90%** on 29 scripted chats, with 0 rule breaks, and halved the median turn.
+- **Scaled past the prompt:** a two-step catalog lookup kept cost at about **$0.017 an answer** while the catalog grew 2.7× (78k → 13k tokens per call).
+- A PostgreSQL log of per-call traces, a public [stats page](https://jhola.ramiyer.tech/stats) computed in SQL, 293 tests and a real-model eval check on every PR.
 
-- Recommended videos earned long views **4.6 times as often** as random ones (36.3% against 7.9%).
-- About three quarters of the gain comes from matching videos to the individual user, and one quarter from popularity.
-- The lift holds across every user segment, between 4.1x and 4.7x.
+`TypeScript` `Next.js` `OpenAI` `Zod` `PostgreSQL` `Redis` · [Live](https://jhola.ramiyer.tech) · [Code](https://github.com/iyerbrah/Jhola)
 
-`Python` `pandas` `NumPy` `Plotly` `Streamlit` · [Live app](https://personalisation-lift-dkvysrjbxfpijjzcnot9ju.streamlit.app/)
+<br clear="right">
 
-### [Text-to-SQL Analytics Assistant](https://github.com/iyerbrah/ask-the-olist-data)
+<a href="https://plainsight.ramiyer.tech"><img align="right" width="380" src="assets/plainsight.jpg" alt="Plainsight: plain English in, checked SQL out"></a>
 
-A natural-language interface to a retail database, paired with a 60-question benchmark that measures how often its answers are correct.
+### [Plainsight](https://github.com/iyerbrah/Plainsight) · text-to-SQL you can check
 
-- Accuracy rose from **83% to 98%** when the model was given written notes on what the data means.
-- No other change that was tested made a measurable difference.
-- Every generated query is checked to be read-only before it runs.
+Plain-English business questions become one read-only SQL query over 100,000 real e-commerce orders, and every answer shows its query, in a median 1.8 s at about $0.0015 a question.
 
-`Python` `SQL` `DuckDB` `sqlglot` `Altair` `Streamlit` · [Live app](https://ask-the-olist-data-5bcmydxcckwd6pjb5cybm7.streamlit.app/)
+- **What makes it right, measured:** on 60 hand-checked questions scored on results (not SQL text), a one-page semantic layer took accuracy from **85% to 100%** (hard questions 7/15 → 15/15). It held on DeepSeek (83% → 98%); few-shot examples added nothing and caused a new error.
+- **Model output treated as untrusted input:** a sqlglot single-SELECT allow-list, a read-only database, 15 s and 1,000-row caps, and **17 attack tests**. It refused all 10 questions the data can't answer.
+- 103 tests in CI; every merge to `main` deploys itself in about 14 s.
 
----
+`Python` `FastAPI` `DuckDB` `sqlglot` `OpenAI` · [Live](https://plainsight.ramiyer.tech) · [Scorecard](https://plainsight.ramiyer.tech/scorecard) · [Code](https://github.com/iyerbrah/Plainsight)
 
-## Skills
+<br clear="right">
 
-| Area | Tools and methods |
-|---|---|
-| Languages | Python, SQL, TypeScript |
-| Data analysis | pandas, NumPy, DuckDB |
-| Machine learning | scikit-learn, LightGBM, model evaluation and calibration |
-| LLM applications | OpenAI API, structured outputs, prompt caching, text-to-SQL, evaluation benchmarks |
-| Experimentation | Randomised experiment analysis, segment analysis, benchmarking |
-| Web apps | Next.js, React, Tailwind CSS, Streamlit |
-| Deployment | Linux (Ubuntu), nginx, systemd, Redis (Upstash), Let's Encrypt |
-| Visualisation | Plotly, Altair |
+## At work
+
+**AI Engineer Intern · Anibrain Digital Technologies** · Pune · Jul 2026 – present
+
+- **SocialSync**, in production with the marketing team: publishes to 5 social platforms through their OAuth APIs, with scheduling, validation and retries.
+- **Image Studio**, in production with the design team: turns raw product photos into publish-ready posts and carousels, with a Canva integration and per-image cost and latency tracking.
+- **One pipeline from photo to post:** joined the two so a raw product photo becomes a marketing asset that's scheduled and posted to 5 platforms, with no manual export.
+- **A sales CRM** (PostgreSQL, Docker) used by the sales team: migrated 541 opportunities with role-based access and audited imports.
+
+**Product Development Intern · My Learning Plus** · Hyderabad · May – Jul 2024 · Funnel analysis and A/B tests on SMB onboarding; the redesign they drove cut drop-offs by 28% and lifted CTA conversion by 34%.
+
+## How I build
+
+| | |
+| --- | --- |
+| **The model reads; code decides** | Anything that can be computed or checked is code: carrier values, prices and totals, which carts an agent may touch, whether a query may run. |
+| **Measure before claiming** | Every project ships with an eval against the real model, in public: 50 simulated customers, 29 agent scenarios, 60 checked questions, with a reason for every failure. |
+| **Fix the cause, in code** | A prompt tweak that "seems better" isn't a fix. Each change is one PR with before-and-after numbers; the agent went 63% → 90% that way. |
+| **Cost and latency are features** | $0.003 a conversation, $0.017 a cart build, $0.0015 a question, with per-call tracing and spend caps. |
+| **Ship like a team, own it end to end** | Small PRs, CI and eval gates, a protected `main`, automatic deploys with health checks and rollback, on a Linux server I run (nginx, TLS, systemd). |
+
+## Also built
+
+- **[IPL win probability](https://github.com/iyerbrah/ipl-chase-win-probability)**: ball-by-ball win probability for every IPL chase from 2008 to 2026; 82% accuracy on unseen seasons against a 56% baseline, with a leverage score for the tensest moments. `scikit-learn` `LightGBM`
+- **[Recommender lift experiment](https://github.com/iyerbrah/personalisation-lift)**: what a video recommender is worth, from a randomised experiment on 1.36 million impressions; recommended videos got long views 4.6× as often as random ones. `pandas` `NumPy`
+
+## Toolbox
+
+| | |
+| --- | --- |
+| **Languages** | Python, TypeScript, SQL, JavaScript |
+| **AI** | OpenAI, Anthropic and Gemini APIs; tool calling, structured outputs, agents, RAG, evals, guardrails |
+| **Backend and data** | FastAPI, Next.js, REST APIs, Pydantic, Zod, PostgreSQL, DuckDB, SQLite, Redis, data pipelines, OAuth integrations |
+| **Infrastructure** | Linux, nginx, systemd, Docker, GitHub Actions (CI/CD), pytest, Vitest, Git |
+| **Data science** | pandas, NumPy, scikit-learn, LightGBM, experiment analysis |
+
+**BITS Pilani, Hyderabad** · Dual degree: M.Sc. Physics + B.E. Mechanical Engineering, Minor in Finance · 2022 – 2027
+
+**Looking for** an AI engineering internship from January 2027 where I can ship agents, integrations and data systems that people use every day. [Say hello on LinkedIn](https://www.linkedin.com/in/iyer-ram/).

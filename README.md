@@ -14,7 +14,7 @@ The rule that runs through all of it: **the model reads and chooses; code decide
 <table>
   <tr>
     <td align="center" valign="top" width="25%"><h3>3</h3>AI products live on my own Linux server</td>
-    <td align="center" valign="top" width="25%"><h3>590</h3>automated tests across them, run in CI on every PR</td>
+    <td align="center" valign="top" width="25%"><h3>652</h3>automated tests across them, run in CI on every PR</td>
     <td align="center" valign="top" width="25%"><h3>5</h3>eval suites that score the real model; two projects gate PRs on them</td>
     <td align="center" valign="top" width="25%"><h3>0</h3>values invented in 1,285 sent to carrier portals</td>
   </tr>
@@ -37,18 +37,18 @@ A small business describes itself in one chat message; QuoteRunner asks only for
 
 <br clear="right">
 
-<a href="https://jhola.ramiyer.tech"><img align="right" width="380" src="assets/jhola.jpg" alt="Jhola: one line in, three ready carts out"></a>
+<a href="https://jhola.ramiyer.tech"><img align="right" width="380" src="assets/jhola.jpg" alt="Jhola: say what you need, get a ready cart"></a>
 
-### [Jhola](https://github.com/iyerbrah/Jhola) · AI shopping agent for quick commerce
+### [Jhola](https://github.com/iyerbrah/Jhola) · AI agent that builds your grocery cart
 
-One sentence, like "chicken biryani for 4", becomes three priced, in-stock carts from 2,743 real products; then a tool-using agent edits them by chat ("make it vegetarian", "keep it under ₹450").
+Say what you need, like "pasta night for 4, vegetarian, around ₹600" or "snacks for 10 kids, no nuts", and a tool-using agent builds one ready cart of groceries and household items from 3,309 real products, then changes it by chat ("make it 6 people", "no dairy") or by tap. A free demo: no real orders, no payment.
 
-- **The model picks, code counts:** every price, pack size, stock level and budget is computed and checked in code against strict Zod schemas. **97–100% of 35 eval requests pass every rule**, and prompt injections are refused.
-- **An agent built from scratch** (11 validated tools, streamed steps, Undo): moving scope, budget and diet edits into deterministic code took **task success from 63% to 90%** on 29 scripted chats, with 0 rule breaks, and halved the median turn.
-- **Scaled past the prompt:** a two-step catalog lookup kept cost at about **$0.017 an answer** while the catalog grew 2.7× (78k → 13k tokens per call).
-- A PostgreSQL log of per-call traces, a public [stats page](https://jhola.ramiyer.tech/stats) computed in SQL, 293 tests and a real-model eval check on every PR.
+- **The model reasons, code guarantees:** the agent writes intent (a brief and the needs) through 9 strict, Zod-checked tools; a solver in TypeScript picks products, packs and prices, with an exact knapsack for budgets. **100% valid carts over 3,000 random sessions, 0.5 ms a solve**, and an independent checklist re-checks every turn.
+- **Measured on 105 scripted chats** against the real model, checked in code with no AI judge: **91–96 pass across the last two runs, with 0 rule breaks and 0 prompt injections obeyed**, and edits change only what was asked. Moving scope, budget and diet edits into code took task success from 63% to 90% on the first 29-chat eval.
+- **Fast and cheap:** code ends a clean turn and writes the reply itself, so most turns take one or two model calls, about **$0.009 a turn** and 5.4 s median; taps on the cart need no model at all.
+- Every turn logged in PostgreSQL with per-call traces, public [Results](https://jhola.ramiyer.tech/results) and [History](https://jhola.ramiyer.tech/history) pages computed in SQL, 355 tests, and a real-model eval check on PRs.
 
-`TypeScript` `Next.js` `OpenAI` `Zod` `PostgreSQL` `Redis` · [Live](https://jhola.ramiyer.tech) · [Code](https://github.com/iyerbrah/Jhola)
+`TypeScript` `Next.js` `OpenRouter` `Zod` `PostgreSQL` `Redis` · [Live](https://jhola.ramiyer.tech) · [Results](https://jhola.ramiyer.tech/results) · [Code](https://github.com/iyerbrah/Jhola)
 
 <br clear="right">
 
@@ -82,9 +82,9 @@ Plain-English business questions become one read-only SQL query over 100,000 rea
 | | |
 | --- | --- |
 | **The model reads; code decides** | Anything that can be computed or checked is code: carrier values, prices and totals, which carts an agent may touch, whether a query may run. |
-| **Measure before claiming** | Every project ships with an eval against the real model, in public: 50 simulated customers, 29 agent scenarios, 60 checked questions, with a reason for every failure. |
+| **Measure before claiming** | Every project ships with an eval against the real model, in public: 50 simulated customers, 105 scripted agent chats, 60 checked questions, with a reason for every failure. |
 | **Fix the cause, in code** | A prompt tweak that "seems better" isn't a fix. Each change is one PR with before-and-after numbers; the agent went 63% → 90% that way. |
-| **Cost and latency are features** | $0.003 a conversation, $0.017 a cart build, $0.0015 a question, with per-call tracing and spend caps. |
+| **Cost and latency are features** | $0.003 a conversation, $0.009 a chat turn, $0.0015 a question, with per-call tracing and spend caps. |
 | **Ship like a team, own it end to end** | Small PRs, CI and eval gates, a protected `main`, automatic deploys with health checks and rollback, on a Linux server I run (nginx, TLS, systemd). |
 
 ## Also built
